@@ -1,0 +1,17 @@
+SELECT nilai.nilai, table_mahasiswa.namamahasiswa, mata_kuliah.nama_matakuliah
+INNER JOIN table_mahasiswa
+ON nilai.id_mahasiswa = table_mahasiswa.id_mahasiswa
+INNER JOIN mata_kuliah
+ON nilai.id_matakuliah = mata_kuliah.id_matakuliah
+
+DELIMITER //
+CREATE OR REPLACE PROCEDURE nilai(IN nilai INT, OUT hasil VARCHAR(20))
+BEGIN
+  CASE nilai
+    WHEN >=70 THEN
+      SET hasil = 'lulus';
+    ELSE
+      SET hasil = 'tidak lulus';
+  END CASE;
+END //
+DELIMITER;
